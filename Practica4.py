@@ -232,23 +232,67 @@ letras del alfabeto)
 Pista: aunque parezca una obviedad, recuerda que una letra es minuscula si esta entre la 'a'
 y la 'z', y mayuscula si esta entre la 'A' y la 'Z', tambien debe hacer la correspondiente 
 incovacion.
+
+def verificar_letra(caracter):
+    if 'A' <= caracter <= 'Z':
+        print("@Es una MAYUSCULA")
+    elif 'a' <= caracter <= 'z':
+        print("@Es una MINUSCULA")
+
+caracter = input("Ingresa un caracter: ")
+verificar_letra(caracter)
 '''
 '''
 Ejercicio 12
 Escribir un programa que dado un año determine si es bisiesto o no. Un año es bisiesto si es 
 multiplo de 4. Los años multiplos de 100 no son bisiestos, salvo si ellos son tambien multiplo
 de 400 (2000 es bisiesto, pero 1800 no lo es).
+
+year = int(input("Ingrese un año: "))
+if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
+    print(f"El año {year} es un año bisiesto")
+else:
+    print(f"El año {year} no es un año bisiesto")
 '''
 '''
 Ejercicio 13
 Dado la duracion (en segundos) de una llamada telefonica, calcular su costo, de la siguiente
 manera: El primer minuto $1.10, luego $0.25 por cada fraccion de 15 segundos (un cuarto de minuto).
+
+def costo_llamada(segs):
+    segs_restantes = segs % 60
+    costo= 1.1
+
+    if segs > 0:
+        costo += ((segs_restantes - 1) // 15 + 1) * 0.25
+
+    return costo
+
+duracion = int(input("Ingrese la duracion de la llamada en segundos: "))
+costo_total = costo_llamada(duracion)
+print(f"El costo de la llamada es: ${costo_total:.2f}")
 '''
 '''
 Ejercicio 14
 Calcular el numero de pulsaciones que una persona debe tener por cada 10 segundos de ejercicio
 aerobico; la formula que se aplica cuando el sexo es femenino es: (220-edad)/10; si el sexo es 
 masculino es: (210-edad)/10. Resuelva utilizando funciones.
+
+def calcular_pulsaciones(sexo, edad):
+    edad = int(edad)  # Convertir la edad a un entero
+    if sexo.lower() == "masculino":
+        pulsaciones = (210 - edad) / 10
+    elif sexo.lower() == "femenino":
+        pulsaciones = (220 - edad) / 10
+    else:
+        pulsaciones = None  # Sexo no reconocido
+    return pulsaciones
+
+sexo = input("Ingrese su sexo: ").lower()
+edad = int(input("Ingrese su edad: "))
+
+info = calcular_pulsaciones(sexo, edad)
+print(f"Las pulsaciones son: {info}")
 '''
 '''
 Ejercicio 15
@@ -269,6 +313,11 @@ y la minima.
 Si los datos se ingresaran desde el teclado, ¿Que cambios debe hacer en su programa?
 Fundamente su respuesta
 '''
+
+
+
+
+
 '''
 Ejercicio 16
 La aplicacion de la tarjeta SUBE permite revisar los saldos dia a dia y Marcos decidio ver sus saldos
