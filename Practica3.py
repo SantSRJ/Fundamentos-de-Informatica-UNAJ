@@ -142,4 +142,3 @@ nueva_lista.append(texto3[-1])
 nueva_lista.append(texto4[-1])
 
 print(nueva_lista)
-

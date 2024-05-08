@@ -312,12 +312,26 @@ y Ushuaia.
 y la minima.
 Si los datos se ingresaran desde el teclado, ¿Que cambios debe hacer en su programa?
 Fundamente su respuesta
+
+def comparar_temp(temp1, temp2):
+    dif = abs(temp1 - temp2)
+    print(f"La diferencia de temperaturas es de {dif}°C")
+
+buenos_aires2 = 5
+ushuaia2 = -5
+base_marambio2 = -20
+base_marambio3 = -20 - 7
+buenos_aires1 = 16
+
+comparar_temp(buenos_aires2, ushuaia2) #10
+comparar_temp(ushuaia2, base_marambio2) #15
+comparar_temp(base_marambio3, base_marambio2) #7
+comparar_temp(buenos_aires1, buenos_aires2) #11
+
+temp1 = float(input("Ingrese la primer temperatura: "))
+temp2 = float(input("Ingrese la segunda temperatura: "))
+comparar_temp(temp1,temp2)
 '''
-
-
-
-
-
 '''
 Ejercicio 16
 La aplicacion de la tarjeta SUBE permite revisar los saldos dia a dia y Marcos decidio ver sus saldos
@@ -327,6 +341,29 @@ Teniendo en cuenta el registro, definir 3 funciones que permitan mostrar lo sigu
 a) ¿Cuanto gasto de lunes a martes?¿De martes a miercoles?
 b) ¿Cuanto dinero cargo el miercoles para tener el saldo del jueves?
 c) Calcule el promedio gastado en los 5 dias.
+
+def calcular_gasto_entre_dias(saldos, dia1, dia2):
+    gasto = 0
+    for i in range(dia1, dia2):
+        gasto += abs(saldos[i])
+    return gasto
+
+def calcular_saldo_jueves(saldos):
+    saldo_jueves = saldos[3]
+    saldo_miercoles = saldos[2]
+    recarga = saldo_jueves - saldo_miercoles
+    return recarga
+
+def promediar_saldos(saldos):
+    total_gastado = sum([abs(saldo) for saldo in saldos])
+    promedio = total_gastado / len(saldos)
+    return promedio
+
+saldos = [15, -21, -41, 109, 109]
+
+print(calcular_gasto_entre_dias(saldos, 0, 2))
+print(calcular_saldo_jueves(saldos))
+print(promediar_saldos(saldos))
 '''
 '''
 Ejercicio 17
@@ -334,22 +371,49 @@ Definir una funcion que permita ingresar dos numeros enteros y que calcule que p
 el primer numero del segundo.
 Por ejemplo, si la funcion recibe 25 y 200, debera retornar 50, ya que el 25% de 200 es 50.
 Complete usando la funcion anterior: 
-El 25% de 890 =
-El 10% de 12600 =
-El 35% de 12600 =
-El 125% de 890 =  
+El 25% de 890 = 222.5
+El 10% de 12600 = 1260
+El 35% de 12600 = 4410
+El 125% de 890 =  1112.5
+
+def calcular_porcentaje(num1, num2):
+    valor = num1 * num2 / 100
+    return valor
+
+num1 = int(input("Ingrese el porcentaje del numnero que quiere saber: "))
+num2 = int(input("Ingrese el numero: "))
+porcentaje = calcular_porcentaje(num1, num2)
+print(f"El {num1}% de {num2} es {porcentaje}")
 '''
 '''
 Ejercicio 18
 Una carniceria paso de cobrar el vacio de $810 a $1040,90, ¿se puede saber de cuanto fue el porcentaje
 de aumento? Si es asi, calculalo.
 Definir una funcion que reciba dos numeros y que retorne cual es el porcentaje de aumento.
+
+def calcular_porc_aumento(num1, num2):
+    aumento = ((num2 - num1) / num1) * 100
+    return aumento
+
+precio1 = float(input("Ingrese el precio viejo: "))
+precio2 = float(input("Ingrese el nuevo precio: "))
+porcentaje = calcular_porc_aumento(precio1, precio2)
+print(f"El aumento fue de {porcentaje:.2f}%")
 '''
 '''
+Ejercicio 19
 Una persona compro 4 kilogramos de vacio en esta carniceria y por pago en efectivo le hicieron un descuento 
 del 5%, ¿cuanto dinero gasto?
 Definir una funcion que reciba dos numeros, que representan el porcentaje de descuento y el monto total,
 y retorne el monto con el descuento aplicado.
+
+def descontar_efectivo(porc, total):
+    descuento = total * porc / 100
+    return total - descuento
+
+pago = 4 * 1040.9
+pago_con_descuento = descontar_efectivo(5, pago)
+print(f"{pago_con_descuento:.2f}")
 '''
 '''
 Ejercicios complenarios:
@@ -365,30 +429,94 @@ deberia mostrar los siguientes mensajes:
 4 - Calculo transporte
 5 - Salir
 '''
+# Importa las funciones de los archivos correspondientes
+from Practica3 import calcular_dosis
+from Practica3 import calcular_litros
+from Practica3 import calcular_nuevo_precio
+from Practica3 import calcular_transporte
+
+# Define la función principal del programa
+def main():
+    print("Bienvenido al programa con menú de opciones")
+    print("Elija una opción del siguiente menú, ingresando del 1 al 5:")
+    print("1 - Cálculo dosis")
+    print("2 - Cálculo litros")
+    print("3 - Cálculo nuevo precio")
+    print("4 - Cálculo transporte")
+    print("5 - Salir")
+
+    while True:
+        opcion = input("Ingrese el número de la opción que desea: ")
+
+        if opcion == "1":
+            calcular_dosis()
+        elif opcion == "2":
+            calcular_litros()
+        elif opcion == "3":
+            calcular_nuevo_precio()
+        elif opcion == "4":
+            calcular_transporte()
+        elif opcion == "5":
+            print("¡Hasta luego!")
+            break
+        else:
+            print("Opción inválida. Por favor, ingrese un número del 1 al 5.")
+
+# Llama a la función principal para ejecutar el programa
+if __name__ == "__main__":
+    main()
 '''
 Ejercicio 21
 Analizar el siguiente programa y completar el codigo que falta.
 #Zona de definiciones de funciones
+'''
 def cargarDatos():
     #pide nombre, apellido, edad y sueldo a una persona, arma una lista y la retorna
-    ...
+    nombre = input("Ingrese el nombre de la persona: ")
+    apellido = input("Ingrese el apellido de la persona: ")
+    edad = int(input("Ingrese la edad de la persona: "))
+    sueldo = float(input("Ingrese el sueldo de la persona: "))
+    return [nombre, apellido, edad, sueldo]
 def esMayorDeEdad(pers):
     #retorna verdadero True si es mayor de 18 años, sino retorna falso False
-    ...
+    return pers[2] >= 18
 def personaMejorSueldo(pers1, pers2):
     #retorna el nombre y apellido de la persona que gana mas
-    ...
+    if pers1[3] > pers2[3]:
+        return pers1[0], pers1[1]
+    elif pers2[3] > pers1[3]:
+        return pers2[0], pers2[1]
+    else:
+        return "Ambas personas tienen el mismo sueldo"
 def personaMasJoven(pers1, pers2):
     #retorna el nombre y apellido de la persona mas joven de edad
-    ...
+    if pers1[2] < pers2[2]:
+        return pers1[0], pers1[1]
+    elif pers2[2] < pers1[2]:
+        return pers2[0], pers2[1]
+    else:
+        return "Ambas personas tienen la misma edad"
 #Zona del programa principal
 print("Bienvenidos/as al programa sobre datos de personas")
 print("Se solicitara datos de 2 personas y se mostrara informacion sobre ellas")
 #Utilizar la funcion para cargar datos de dos personas
-...
-...
-print("La persona que gana mas es:", ..........)
-print("La persona mas chica es:" , ..........0)
-#Imprimir si la persona mayor es la que mas gana o sea que mayor sueldo tiene.
+persona1 = cargarDatos()
+persona2 = cargarDatos()
 
-'''
+print("La persona que gana más es:", personaMejorSueldo(persona1, persona2))
+print("La persona más joven es:", personaMasJoven(persona1, persona2))
+
+#Imprimir si la persona mayor es la que mas gana o sea que mayor sueldo tiene.
+if esMayorDeEdad(persona1) and esMayorDeEdad(persona2):
+    if persona1[3] > persona2[3]:
+        print(persona1[0], persona1[1], "es mayor y gana más.")
+    elif persona2[3] > persona1[3]:
+        print(persona2[0], persona2[1], "es mayor y gana más.")
+    else:
+        print("Ambas personas son mayores y ganan lo mismo.")
+elif esMayorDeEdad(persona1):
+    print(persona1[0], persona1[1], "es mayor de edad.")
+elif esMayorDeEdad(persona2):
+    print(persona2[0], persona2[1], "es mayor de edad.")
+else:
+    print("Ambas personas son menores de edad.")
