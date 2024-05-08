@@ -430,37 +430,30 @@ deberia mostrar los siguientes mensajes:
 5 - Salir
 '''
 # Importa las funciones de los archivos correspondientes
-from Practica3 import calcular_dosis
-from Practica3 import calcular_litros
-from Practica3 import calcular_nuevo_precio
-from Practica3 import calcular_transporte
+from Practica3 import calculo_dosis, calculo_litros, calculo_nuevo_precio, armo_cartel
 
 # Define la función principal del programa
 def main():
     print("Bienvenido al programa con menú de opciones")
-    print("Elija una opción del siguiente menú, ingresando del 1 al 5:")
+    print("Elija una opción del siguiente menú, ingresando del 1 al 4:")
     print("1 - Cálculo dosis")
     print("2 - Cálculo litros")
     print("3 - Cálculo nuevo precio")
-    print("4 - Cálculo transporte")
-    print("5 - Salir")
+    print("4 - Mostrar cartel")
 
     while True:
         opcion = input("Ingrese el número de la opción que desea: ")
 
         if opcion == "1":
-            calcular_dosis()
+            calculo_dosis()
         elif opcion == "2":
-            calcular_litros()
+            calculo_litros()
         elif opcion == "3":
-            calcular_nuevo_precio()
+            calculo_nuevo_precio()
         elif opcion == "4":
-            calcular_transporte()
-        elif opcion == "5":
-            print("¡Hasta luego!")
-            break
+            armo_cartel()
         else:
-            print("Opción inválida. Por favor, ingrese un número del 1 al 5.")
+            print("Opción inválida. Por favor, ingrese un número del 1 al 4.")
 
 # Llama a la función principal para ejecutar el programa
 if __name__ == "__main__":
@@ -469,7 +462,7 @@ if __name__ == "__main__":
 Ejercicio 21
 Analizar el siguiente programa y completar el codigo que falta.
 #Zona de definiciones de funciones
-'''
+
 def cargarDatos():
     #pide nombre, apellido, edad y sueldo a una persona, arma una lista y la retorna
     nombre = input("Ingrese el nombre de la persona: ")
@@ -520,3 +513,4 @@ elif esMayorDeEdad(persona2):
     print(persona2[0], persona2[1], "es mayor de edad.")
 else:
     print("Ambas personas son menores de edad.")
+'''
